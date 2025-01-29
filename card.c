@@ -3,8 +3,8 @@
 
 int main(){
 	char card_name[3];
-	puts("Enter the card_name: ");
-	scanf("%3s", card_name);
+	puts("Enter the card_name: ");  /* single quotes are used for individual characters, but double quotes are always used for strings. */
+	scanf("%2s", card_name);
 	int val = 0;
 	if (card_name[0] == 'K'){
 		val = 10;

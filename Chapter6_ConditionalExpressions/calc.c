@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
+
 
 double calc( double operand1, double operand2, char operand );
 

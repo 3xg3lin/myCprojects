@@ -13,8 +13,13 @@ int main( int argc, char *argv[] ){
 }
 
 int sumNviaFor( int n ){
-
+    int sum = 0;
+    for ( int num = 0; num < n; num++ ) {
+        sum += (num+1);
+    }
+    return sum;
 }
+
 int sumNviaWhile( int n ){
     int sum = 0;
     int num = 0;

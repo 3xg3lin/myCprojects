@@ -31,8 +31,16 @@ int sumNviaWhile( int n ){
     return sum;
 }
 int sumNviaDoWhile( int n ){
+    int sum = 0;
+    int num = 0;
 
+    do {
+        sum += (num+1);
+        num++;
+    } while (num < n);
+    return sum;
 }
+
 int sumNviaGoto( int n ){
 
 }

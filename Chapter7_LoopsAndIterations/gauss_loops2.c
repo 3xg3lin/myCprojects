@@ -35,3 +35,14 @@ int sumNviaFor2(int N){
     }
     return sum;
 }
+
+int sumNviaDoWhile2(int N){
+    int sum = 0;
+
+    do {
+        sum += N;
+        N--;
+    } while (N);
+
+    return sum;
+}

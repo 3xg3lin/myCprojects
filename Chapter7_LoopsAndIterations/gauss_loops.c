@@ -4,12 +4,14 @@
 int sumNviaFor( int n );
 int sumNviaWhile( int n );
 int sumNviaDoWhile( int n );
-int sumNviaGoto( int n );
+
 
 int main( int argc, char *argv[] ){
     int n = 100;
 
-    printf( " The sum of 1..%d = %d (via while() ... loop)\n", n, sumNviaWhile( n ));
+    printf( "The sum of 1..%d = %d (via while() ... loop)\n"  , n , sumNviaWhile( n ) );
+    printf( "The sum of 1..%d = %d (via for() ... loop)\n"    , n , sumNviaFor( n ) );
+    printf( "The sum of 1..%d = %d (via do...while() loop)\n" , n , sumNviaDoWhile( n ) );
 }
 
 int sumNviaFor( int n ){
@@ -39,8 +41,4 @@ int sumNviaDoWhile( int n ){
         num++;
     } while (num < n);
     return sum;
-}
-
-int sumNviaGoto( int n ){
-
 }

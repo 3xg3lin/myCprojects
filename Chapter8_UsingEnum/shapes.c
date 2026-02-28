@@ -39,7 +39,7 @@ int main() {
 void PrintShapeInfo(enum shape aShape){
     int nSides = 0;
     switch (aShape) {
-        case triangle;
+        case triangle:
             nSides = 3;
             break;
         case square:

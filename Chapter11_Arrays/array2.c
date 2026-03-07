@@ -7,8 +7,8 @@ int main(){
     y = 12;
     z = 13;
 
-    //anArray[11] = 7;
-    anArray[x] = 0;
+    //anArray[11] = 7;    // cause a compiler error
+    anArray[x] = 0;       // cause a runtime error
     printf("anArray[%d] = %d", x, anArray[x]);
     return 0;
 }

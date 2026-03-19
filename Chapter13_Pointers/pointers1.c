@@ -13,7 +13,7 @@ int main(){
     printf("[height, width, length] = [%2d, %2d, %2d] \n\n",height ,width, length);
     printf("address of pDimension = %p\n", &pDimension);
     printf("address kept by pDimension = %p\n", pDimension);
-    printf("value at NULL pDimension = %2d\n", *pDimension);
+//    printf("value at NULL pDimension = %2d\n", *pDimension);
 
     printf("\nUsing address of each named variables...\n\n");
     pDimension = &height;

@@ -6,7 +6,7 @@ void square(double* psize){
 
 int main(){
     double size = 5;
-    double* psize = &size;
-    square(psize);
-    printf("actual size after all computation = %lg \n", size);
+    double* psize = &size;  // point to the 'size' address (that is its target)
+    square(psize);    // pass address of size to function
+    printf("actual size after all computation = %lg \n", size); // new value of 'size' is 15
 }

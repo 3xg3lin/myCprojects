@@ -44,7 +44,7 @@ void traverse3(int size, int arr[]){
 }
 
 void traverse4(int size, int* pArr){
-    printf("\n(3) Function parameter is a pointer, ");
+    printf("\n(4) Function parameter is a pointer, ");
     printf("using array notation:\n\n");
     for (int i = 0; i < size; i++) {
         printf("&(pArr[%i]) = %p, pArr[%1d] = %1d, i++\n", i, &(pArr[i]), i, pArr[i]);

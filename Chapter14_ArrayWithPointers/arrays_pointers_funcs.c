@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     traverse1(arraySize, array);
     traverse2(arraySize, array);
     traverse3(arraySize, array);
-    //traverse4(arraySize, array);
+    traverse4(arraySize, array);
 }
 
 void traverse1(int size, int arr[]){
@@ -47,6 +47,6 @@ void traverse4(int size, int* pArr){
     printf("\n(3) Function parameter is a pointer, ");
     printf("using array notation:\n\n");
     for (int i = 0; i < size; i++) {
-        printf("&(pArr[i]) = %p, pArr[%1d] = %1d, i++\n", i, &(pArr[i]), i, pArr[i]);
+        printf("&(pArr[%i]) = %p, pArr[%1d] = %1d, i++\n", i, &(pArr[i]), i, pArr[i]);
     }
 }

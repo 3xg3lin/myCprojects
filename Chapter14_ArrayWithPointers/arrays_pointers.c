@@ -8,7 +8,7 @@ int main(){
     printf("Pointer values (addresses) from initial assignments:\n\n");
     printf( "address of array = %p,  value at array = %d\n", array, *array);
     printf( "address of &array[0] = %p,  value at array[0] = %d\n" ,&array[0], array[0]);
-    printf( "address of pArray1 = %p,  value at pArray1 = %d\n", pArray1, *pArray1);
+    printf( "address of pArray1 = %p,  value at pArray1[0] = %d\n", pArray1, pArray1[0]);
     printf( "address of pArray2 = %p,  value at pArray2 = %d\n", pArray2, *pArray2);
     printf("\n(1) Array values using array notation (index is incremented):\n\n");
 

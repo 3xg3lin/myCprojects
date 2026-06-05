@@ -14,10 +14,10 @@ int main(void){
     printf( "                Table of 7-Bit ASCII and \n");
     printf( "             Single-Byte UTF-8 Character Sets  \n\n");
 
-    printf( "|Control Character|    Printable Characaters (except DEL)   |\n" );
-    printf( "|-----------------|-----------------------------------------|\n" );
-    printf( "| SYM Ch Dec  Hex | Ch Dec  Hex | Ch Dec  Hex | Ch Dec  Hex |\n" );
-    printf( "|-----------------|-------------|-------------|-------------|\n" );
+    printf( "|  Control Characters |    Printable Characaters (except DEL)   |\n" );
+    printf( "|---------------------|-----------------------------------------|\n" );
+    printf( "| SYM Fmt Ch Dec  Hex | Ch Dec  Hex | Ch Dec  Hex | Ch Dec  Hex |\n" );
+    printf( "|---------------------|-------------|-------------|-------------|\n" );
 
     for (int i = 0; i < 32; i++){
         c1 = i;
@@ -30,7 +30,7 @@ int main(void){
             fmtStr[0] = '\\';
             fmtStr[1] = format[i];
         }
-        printf("| %s %s  ^%c %#4x", ctrl[i], fmtStr, c1+64, c1);
+        printf("| %s %s ^%c %3d  %#4x", ctrl[i], fmtStr, c1+64, c1, c1);
         printf("| %c  %3d  %#x", c2, c2, c2);
         printf("| %c  %3d  %#x", c3, c3, c3);
         if (c4 != 127) {

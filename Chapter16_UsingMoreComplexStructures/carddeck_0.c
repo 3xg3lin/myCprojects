@@ -38,18 +38,22 @@ int GetCardFaceValue(Card* pCard);
 int GetCardSuiteValue(Card* pCard);
 void PrintCard( Card* pCard );
 void CardToString(Card* pCard, char pCardStr[20]);
+void InitializeCard(Card* pCard, Suit s, Face f, bool w);
 
 int main(void)  {
     Card aCard;
-    aCard.suit = eDiamond;
-    aCard.suitValue = GetCardSuiteValue(&aCard);
-    aCard.face = eSeven;
-    aCard.faceValue = GetCardFaceValue(&aCard);
-    aCard.isWild = true;
-
+    InitializeCard(&aCard, eDiamond, eSeven, true);
     PrintCard(&aCard);
     printf("\n");
     return 0;
+}
+
+void InitializeCard(Card* pCard, Suit s, Face f, bool w){
+    pCard->suit = s;
+    pCard->suitValue = GetCardSuiteValue(pCard);
+    pCard->face = f;
+    pCard->faceValue = GetCardFaceValue(pCard);
+    pCard->isWild = w;
 }
 
 inline int GetCardFaceValue(Card* pCard) {       // An inline function is a small function that asks compiler to insert

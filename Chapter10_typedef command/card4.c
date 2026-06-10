@@ -67,7 +67,7 @@ int main(void)  {
     return 0;
 }
 
-Hand addCard( Hand oldHand,   Card card)  {
+Hand addCard(Hand oldHand, Card card)  {
     Hand newHand = oldHand;
     switch(newHand.cardsDealt){
         case 0:
@@ -89,7 +89,7 @@ Hand addCard( Hand oldHand,   Card card)  {
   return newHand;
 }
 
-void printHand(  Hand h)  {
+void printHand(Hand h)  {
   for(int i = 1; i < h.cardsDealt+1; i++) {  // 1..5
       Card c;
     switch(i)  {
@@ -104,7 +104,7 @@ void printHand(  Hand h)  {
   }
 }
 
-void printHand2(  Hand h)  {
+void printHand2(Hand h)  {
   int dealt = h.cardsDealt;
   if(dealt == 0) return;
   printCard(h.c1); if(dealt == 1) return;
@@ -114,7 +114,7 @@ void printHand2(  Hand h)  {
   printCard(h.c5); return;
 }
 
-void printCard(  Card c)  {
+void printCard(Card c)  {
   switch(c.face)  {
     case eTwo:   printf("2"); break;
     case eThree: printf("3"); break;

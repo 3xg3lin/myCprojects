@@ -42,9 +42,9 @@ void CardToString(Card* pCard, char pCardStr[20]);
 int main(void)  {
     Card aCard;
     aCard.suit = eDiamond;
-    aCard.suitValue = GetCardSuiteValue(pCard);
+    aCard.suitValue = GetCardSuiteValue(&aCard);
     aCard.face = eSeven;
-    aCard.faceValue = GetCardFaceValue(pCard);
+    aCard.faceValue = GetCardFaceValue(&aCard);
     aCard.isWild = true;
 
     PrintCard(&aCard);

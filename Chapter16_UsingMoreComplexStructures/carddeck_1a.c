@@ -52,6 +52,13 @@ const bool kNotWildCard = false;
 int main(void)  {
     Card deck[kCardsInDeck];
     Card* aCard = &deck[3];
+    aCard->suit = eSpade;
+    aCard->suitValue = GetCardSuiteValue(aCard);
+    aCard->face = eFive;
+    aCard->faceValue = GetCardFaceValue(aCard);
+    aCard->isWild = kNotWildCard;
+
+    PrintCard(&deck[3]);
     return 0;
 }
 

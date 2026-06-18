@@ -63,6 +63,9 @@ const bool kNotWildCard = false;
 int main(void)  {
     Card deck[kCardsInDeck];
     InitializeDeck(&deck[0]);
+
+    Hand h1;
+
     PrintDeck(&deck[0]);
     return 0;
 }

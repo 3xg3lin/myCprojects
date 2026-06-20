@@ -78,6 +78,16 @@ int main(void)  {
     return 0;
 }
 
+void PrintHand(Hand* pHand, char* pHandStr, char* pLeadStr){
+    printf("%s%s\n", pLeadStr, pHandStr);
+    for (int i = 0; i < pHand->cardsDealt; i++) {
+        Card* pCard = GetCardInHand(pHand, i);
+        printf("%s", pLeadStr);
+        PrintCard(pCard);
+        printf("\n");
+    }
+}
+
 void AddCardToHand(Hand* pHand, Card* pCard){
     int numInHand = pHand->cardsDealt;
     if(numInHand == kCardsInHand) return;

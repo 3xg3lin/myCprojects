@@ -79,9 +79,9 @@ int main(void)  {
 }
 
 void PrintHand(Hand* pHand, char* pHandStr, char* pLeadStr){
-    printf("%s%s\n", pLeadStr, pHandStr);
-    for (int i = 0; i < pHand->cardsDealt; i++) {
-        Card* pCard = GetCardInHand(pHand, i);
+    printf("%s%s\n", pLeadStr, pHandStr);                        //  We use pLeadStr or pHandStr because it expects an address for “%s”
+    for (int i = 0; i < pHand->cardsDealt; i++) {                // “%s” outputs must be of type char * (or const char *).
+        Card* pCard = GetCardInHand(pHand, i);                   // If we want to print only the first character, we could use the command printf(“%c”, *pLeadStr);
         printf("%s", pLeadStr);
         PrintCard(pCard);
         printf("\n");

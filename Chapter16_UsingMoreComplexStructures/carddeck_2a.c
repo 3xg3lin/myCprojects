@@ -35,13 +35,19 @@ typedef struct Card {
 } Card;
 
 typedef struct{
-    int cardDealt;
+    int cardsDealt;
     Card card1;
     Card card2;
     Card card3;
     Card card4;
     Card card5;
 } Hand;
+
+void InitializeHand(Hand* pHand);
+void AddCardToHand(Hand* pHand, Card* pCard);
+void PrintHand(Hand* pHand, char* pHandStr, char* pLeadStr);
+Card* GetCardInHand(Hand* pHand, int cardIndex);
+
 
 int GetCardFaceValue(Card* pCard);
 int GetCardSuiteValue(Card* pCard);
@@ -52,8 +58,10 @@ void InitializeDeck(Card* pDeck);
 void PrintDeck(Card* pDeck);
 
 enum  {
-  kCardsInDeck = 52,
-  kCardsInSuit = 13
+    kCardsInHand = 5,
+    kCardsInDeck = 52,
+    kCardsInSuit = 13,
+    kNumHand = 4
 };
 
 const bool kWildCard    = true;
@@ -70,6 +78,34 @@ int main(void)  {
     return 0;
 }
 
+void AddCardToHand(Hand* pHand, Card* pCard){
+    int numInHand = pHand->cardsDealt;
+    if(numInHand == kCardsInHand) return;
+
+    Card* pC = GetCardInHand(pHand,numInHand);
+    InitializeCard(pC, pCard->suit, pCard->face, pCard->isWild);
+
+    pHand->cardsDealt++;
+}
+
+Card* GetCardInHand(Hand* pHand, int cardIndex){
+    Card* pC = NULL;
+    switch (cardIndex) {
+        case 0:
+            pC = &(pHand->card1); break;
+        case 1:
+            pC = &(pHand->card2); break;
+        case 3:
+            pC = &(pHand->card3); break;
+        case 4:
+            pC = &(pHand->card4); break;
+    }
+    return pC;
+}
+
+void InitializeHand(Hand* pHand){
+    pHand->cardsDealt = 0;
+}
 
 // Implement the following functions in this file
 void InitializeCard(Card* pCard, Suit s, Face f, bool w){

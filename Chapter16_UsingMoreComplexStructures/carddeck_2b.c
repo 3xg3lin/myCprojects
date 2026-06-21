@@ -126,10 +126,12 @@ Card** GetCardInHand(Hand* pHand, int cardIndex){
             ppC = &(pHand->pCard1); break;
         case 1:
             ppC = &(pHand->pCard2); break;
-        case 3:
+        case 2:
             ppC = &(pHand->pCard3); break;
-        case 4:
+        case 3:
             ppC = &(pHand->pCard4); break;
+        case 4:
+            ppC = &(pHand->pCard5); break;
     }
     return ppC;
 }

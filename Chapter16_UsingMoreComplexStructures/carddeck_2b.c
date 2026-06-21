@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <threads.h>
 
 typedef enum Suit {
     eClub  = 1,
@@ -36,11 +37,11 @@ typedef struct Card {
 
 typedef struct{
     int cardsDealt;
-    Card* card1;
-    Card* card2;
-    Card* card3;
-    Card* card4;
-    Card* card5;
+    Card*  pCard1;
+    Card*  pCard2;
+    Card*  pCard3;
+    Card*  pCard4;
+    Card*  pCard5;
 } Hand;
 
 void InitializeHand(Hand* pHand);
@@ -67,23 +68,44 @@ enum  {
 const bool kWildCard    = true;
 const bool kNotWildCard = false;
 
+Card* DealCardFromDeck(Card pDeck[], int index){
+    Card* pCard = &pDeck[index];
+    return pCard;
+}
+
 
 int main(void)  {
     Card deck[kCardsInDeck];
+    Card* pDeck = deck;
     InitializeDeck(&deck[0]);
 
-    Hand h1;
+    Hand h1, h2, h3, h4;
+    InitializeHand(&h1);
+    InitializeHand(&h2);
+    InitializeHand(&h3);
+    InitializeHand(&h4);
 
-    PrintDeck(&deck[0]);
+    for (int i = 0; i < kCardsInHand; i++) {
+        AddCardToHand(&h1, DealCardFromDeck(pDeck, i));
+        AddCardToHand(&h2, DealCardFromDeck(pDeck, i + 13));
+        AddCardToHand(&h3, DealCardFromDeck(pDeck, i + 26));
+        AddCardToHand(&h4, DealCardFromDeck(pDeck, i + 39));
+    }
+
+    PrintHand(&h1, "Hand 1: ", "   ");
+    PrintHand(&h2, "Hand 2: ", "   ");
+    PrintHand(&h3, "Hand 3: ", "   ");
+    PrintHand(&h4, "Hand 4: ", "   ");
+
     return 0;
 }
 
 void PrintHand(Hand* pHand, char* pHandStr, char* pLeadStr){
-    printf("%s%s\n", pLeadStr, pHandStr);                        //  We use pLeadStr or pHandStr because it expects an address for “%s”
-    for (int i = 0; i < pHand->cardsDealt; i++) {                // “%s” outputs must be of type char * (or const char *).
-        Card* pCard = GetCardInHand(pHand, i);                   // If we want to print only the first character, we could use the command printf(“%c”, *pLeadStr);
+    printf("%s%s\n", pLeadStr, pHandStr);
+    for (int i = 0; i < pHand->cardsDealt; i++) {
+        Card** pCard = GetCardInHand(pHand, i);
         printf("%s", pLeadStr);
-        PrintCard(pCard);
+        PrintCard(*pCard);
         printf("\n");
     }
 }
@@ -94,7 +116,6 @@ void AddCardToHand(Hand* pHand, Card* pCard){
 
     Card** ppC = GetCardInHand(pHand,numInHand);
     *ppC = pCard;
-
     pHand->cardsDealt++;
 }
 
@@ -102,24 +123,24 @@ Card** GetCardInHand(Hand* pHand, int cardIndex){
     Card** ppC = NULL;
     switch (cardIndex) {
         case 0:
-            ppC = &(pHand->card1); break;
+            ppC = &(pHand->pCard1); break;
         case 1:
-            ppC = &(pHand->card2); break;
+            ppC = &(pHand->pCard2); break;
         case 3:
-            ppC = &(pHand->card3); break;
+            ppC = &(pHand->pCard3); break;
         case 4:
-            ppC = &(pHand->card4); break;
+            ppC = &(pHand->pCard4); break;
     }
     return ppC;
 }
 
 void InitializeHand(Hand* pHand){
     pHand->cardsDealt = 0;
-    pCard1 = NULL;
-    pCard2 = NULL;
-    pCard3 = NULL;
-    pCard4 = NULL;
-    pCard5 = NULL;
+    pHand->pCard1     = NULL;
+    pHand->pCard2     = NULL;
+    pHand->pCard3     = NULL;
+    pHand->pCard4     = NULL;
+    pHand->pCard5     = NULL;
 }
 
 // Implement the following functions in this file

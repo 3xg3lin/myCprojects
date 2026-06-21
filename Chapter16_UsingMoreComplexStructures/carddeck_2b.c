@@ -46,7 +46,7 @@ typedef struct{
 void InitializeHand(Hand* pHand);
 void AddCardToHand(Hand* pHand, Card* pCard);
 void PrintHand(Hand* pHand, char* pHandStr, char* pLeadStr);
-Card* GetCardInHand(Hand* pHand, int cardIndex);
+Card** GetCardInHand(Hand* pHand, int cardIndex);
 
 
 int GetCardFaceValue(Card* pCard);
@@ -92,29 +92,34 @@ void AddCardToHand(Hand* pHand, Card* pCard){
     int numInHand = pHand->cardsDealt;
     if(numInHand == kCardsInHand) return;
 
-    Card* pC = GetCardInHand(pHand,numInHand);
-    InitializeCard(pC, pCard->suit, pCard->face, pCard->isWild);
+    Card** ppC = GetCardInHand(pHand,numInHand);
+    *ppC = pCard;
 
     pHand->cardsDealt++;
 }
 
-Card* GetCardInHand(Hand* pHand, int cardIndex){
-    Card* pC = NULL;
+Card** GetCardInHand(Hand* pHand, int cardIndex){
+    Card** ppC = NULL;
     switch (cardIndex) {
         case 0:
-            pC = &(pHand->card1); break;
+            ppC = &(pHand->card1); break;
         case 1:
-            pC = &(pHand->card2); break;
+            ppC = &(pHand->card2); break;
         case 3:
-            pC = &(pHand->card3); break;
+            ppC = &(pHand->card3); break;
         case 4:
-            pC = &(pHand->card4); break;
+            ppC = &(pHand->card4); break;
     }
-    return pC;
+    return ppC;
 }
 
 void InitializeHand(Hand* pHand){
     pHand->cardsDealt = 0;
+    pCard1 = NULL;
+    pCard2 = NULL;
+    pCard3 = NULL;
+    pCard4 = NULL;
+    pCard5 = NULL;
 }
 
 // Implement the following functions in this file

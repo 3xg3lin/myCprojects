@@ -11,7 +11,7 @@ int main(){
 }
 
 void printPage(const char* aHeading){
-    static int pageNo = 1;
+    static int pageNo = 1;        // We need a static variable because the pageNo function can be countable every time it is called.
 
     printf( "---------------------\n"
             "| %10s        |\n" , aHeading );

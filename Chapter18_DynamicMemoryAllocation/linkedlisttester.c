@@ -68,14 +68,16 @@ void InsertNodeToFront(LinkedList* pList, ListNode* pNode){
 
 void InsertNodeToBack(LinkedList* pList, ListNode* pNode){
     if (isEmpty(pList)){
-        pList->pFirstNode = pNode;
+        pList->pFirstNode = pNode;        // Empty list -> pNode is simply the first node.
     }
     else {
+        // If it is not empty, walk to the last element of the list
+        // using a temp variable pCurr, because we are inserting the node at the back.
         ListNode* pCurr = pList->pFirstNode;
         while (NULL != pCurr->pNext) {
             pCurr = pCurr->pNext;
         }
-        pCurr->pNext = pNode;
+        pCurr->pNext = pNode;            // Attach new node after the last one
     }
-    pList->nodeCount++;
+    pList->nodeCount++;                  // And update the count
 }

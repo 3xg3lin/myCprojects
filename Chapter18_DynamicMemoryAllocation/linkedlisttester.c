@@ -46,9 +46,22 @@ int Size(LinkedList* pList){
     return pList->nodeCount;
 }
 
+/*
+ *  LinkedList              ListNode                ListNode                ListNode
+ * +------------+         +----------+            +----------+            +----------+
+ * | pFirstNode |-------->| pNext    |----------->| pNext    |----------->| pNext    |----> NULL
+ * +------------+         +----------+            +----------+            +----------+
+ * | nodeCount  |         | pData    |            | pData    |            | pData    |
+ * +------------+         +----+-----+            +----+-----+            +----+-----+
+ *                             |                       |                       |
+ *                             v                       v                       v
+ *                        +---------+             +---------+             +---------+
+ *                        | ListData|             | ListData|             | ListData|
+ *                        +---------+             +---------+             +---------+
+ */
 void InsertNodeToFront(LinkedList* pList, ListNode* pNode){
-    ListNode* pNext = pList->pFirstNode;
-    pList->pFirstNode = pNode;
-    pNode->pNext = pNext;
-    pList->nodeCount++;
+    ListNode* pNext = pList->pFirstNode;  // The old first node must be saved BEFORE overwriting pFirstNode. This temp variable pNext is created for that purpose.
+    pList->pFirstNode = pNode;            // Make pNode the new first node of the list.
+    pNode->pNext = pNext;                 // Link the new node (pNode) to the old first node saved in the pNext variable created in the first line.
+    pList->nodeCount++;                   // And update the count
 }

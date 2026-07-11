@@ -65,3 +65,17 @@ void InsertNodeToFront(LinkedList* pList, ListNode* pNode){
     pNode->pNext = pNext;                 // Link the new node (pNode) to the old first node saved in the pNext variable created in the first line.
     pList->nodeCount++;                   // And update the count
 }
+
+void InsertNodeToBack(LinkedList* pList, ListNode* pNode){
+    if (isEmpty(pList)){
+        pList->pFirstNode = pNode;
+    }
+    else {
+        ListNode* pCurr = pList->pFirstNode;
+        while (NULL != pCurr->pNext) {
+            pCurr = pCurr->pNext;
+        }
+        pCurr->pNext = pNode;
+    }
+    pList->nodeCount++;
+}

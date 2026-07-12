@@ -331,3 +331,8 @@ ListNode* CreateNode(ListData* pData){
     pNewNode->pData = pData;
     return pNewNode;
 }
+
+void DeleteNode(ListNode* pNode){
+    free(pNode->pData);
+    free(pNode);
+}

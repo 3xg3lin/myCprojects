@@ -337,6 +337,10 @@ void DeleteNode(ListNode* pNode){
     free(pNode);
 }
 
+void PrintNode(ListNode* pNode, void (*printData)(ListData* pData)){
+    printData(pNode->pData);
+}
+
 /*
  * A function is a named location in memory. Normally we'd call it
  * directly by name, but here we don't know which function will be

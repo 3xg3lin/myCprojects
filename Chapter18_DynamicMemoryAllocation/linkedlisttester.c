@@ -186,6 +186,53 @@ void InsertNodeToBack(LinkedList* pList, ListNode* pNode){
     pList->nodeCount++;                  // And update the count
 }
 
+/*
+ * (BEFORE RemoveNodeFromFront):
+ * pCurr also points to pList->pFirstNode -- same node as firstNode, ListNode(1).
+ *
+ *  LinkedList        ListNode(1)     ListNode(2)     ListNode(3)     ListNode(4)
+ *  +----------+      +--------+      +--------+      +--------+      +--------+
+ *  |firstNode ---->  | next   |----> | next   |----> | next   |----> | next   |----> NULL
+ *  +----------+ '--->+--------+      +--------+      +--------+      +--------+
+ *  |nodeCount | |    | data   |      | data   |      | data   |      | data   |
+ *  +----------+ |    +--------+      +--------+      +--------+      +--------+
+ *               |        |               |               |               |
+ *               |        v               v               v               v
+ *               |    +--------+      +--------+      +--------+      +--------+
+ *  +--------+   |    |ListData|      |ListData|      |ListData|      |ListData|
+ *  | pCurr  |-.      +--------+      +--------+      +--------+      +--------+
+ *  +--------+
+ *
+ *
+ * (AFTER RemoveNodeFromFront):
+ * firstNode now points to ListNode(2) -- it has become the new first node.
+ * pCurr still points to ListNode(1), which is no longer part of the list.
+ *
+ *  LinkedList          ListNode(2)     ListNode(3)     ListNode(4)
+ *  +----------+        +--------+      +--------+      +--------+
+ *  |firstNode ----->   | next   |----> | next   |----> | next   |----> NULL
+ *  +----------+        +--------+      +--------+      +--------+
+ *  |nodeCount |        | data   |      | data   |      | data   |
+ *  +----------+        +--------+      +--------+      +--------+
+ *                          |               |               |
+ *                          v               v               v
+ *                      +--------+      +--------+      +--------+
+ *                      |ListData|      |ListData|      |ListData|
+ *                      +--------+      +--------+      +--------+
+ *
+ *                 ListNode(1)  (removed)
+ *  +--------+     +--------+
+ *  | pCurr  |---->| next   |   (not in list)
+ *  +--------+     +--------+
+ *                 | data   |
+ *                 +--------+
+ *                     |
+ *                     v
+ *                 +--------+
+ *                 |ListData|
+ *                 +--------+
+ */
+
 ListNode* RemoveNodeFromFront(LinkedList* pList){
     if (isEmpty(pList)) {
         return NULL;

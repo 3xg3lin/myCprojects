@@ -336,3 +336,21 @@ void DeleteNode(ListNode* pNode){
     free(pNode->pData);
     free(pNode);
 }
+
+/*
+ * A function is a named location in memory. Normally we'd call it
+ * directly by name, but here we don't know which function will be
+ * used ahead of time -- the caller decides. So (*printData) is a pointer
+ * variable holding that function's address instead of its name, and
+ * we use that pointer later to actually call the function.
+ */
+
+void PrintList(LinkedList* pList, void (*printData)(ListData* pData)){
+    printf("List has %2d entries: [", Size(pList));
+    ListNode* pCurr = pList->pFirstNode;
+    while (NULL != pCurr) {
+        PrintNode(pCurr, printData);
+        pCurr = pCurr->pNext;
+    }
+    printf("]\n");
+}

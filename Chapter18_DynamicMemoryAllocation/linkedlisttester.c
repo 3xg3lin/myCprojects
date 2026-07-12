@@ -195,3 +195,18 @@ ListNode* RemoveNodeFromFront(LinkedList* pList){
     pList->nodeCount--;
     return pCurr;
 }
+
+ListNode* RemoveNodeFromBack(LinkedList* pList){
+    if (isEmpty(pList)) {
+        return NULL;
+    }
+    ListNode* pCurr = pList->pFirstNode;
+    ListNode* pPrev = NULL;
+    while (NULL != pCurr->pNext) {
+        pPrev = pCurr;
+        pCurr = pCurr->pNext;
+    }
+    pPrev->pNext = NULL;
+    pList->nodeCount--;
+    return pCurr;
+}

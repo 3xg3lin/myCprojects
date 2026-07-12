@@ -243,6 +243,50 @@ ListNode* RemoveNodeFromFront(LinkedList* pList){
     return pCurr;
 }
 
+/*
+ * (BEFORE RemoveNodeFromBack):
+ * pPrev points to ListNode(3), pCurr points to ListNode(4) -- the last node.
+ *
+ *                                                    pPrev           pCurr
+ *                                                     |               |
+ *                                                     |               |
+ *                                                     v               v
+ *  LinkedList      ListNode(1)     ListNode(2)     ListNode(3)     ListNode(4)
+ *  +----------+    +--------+      +--------+      +--------+      +--------+
+ *  |firstNode ---->| next   |----> | next   |----> | next   |----> | next   |----> NULL
+ *  +----------+    +--------+      +--------+      +--------+      +--------+
+ *  |nodeCount |    | data   |      | data   |      | data   |      | data   |
+ *  +----------+    +--------+      +--------+      +--------+      +--------+
+ *                      |               |               |               |
+ *                      v               v               v               v
+ *                  +--------+      +--------+      +--------+      +--------+
+ *                  |ListData|      |ListData|      |ListData|      |ListData|
+ *                  +--------+      +--------+      +--------+      +--------+
+ *
+ *
+ *
+ * (AFTER RemoveNodeFromBack):
+ * pPrev->pNext (ListNode(3)'s next) is now NULL -- ListNode(3) is the new last node.
+ * pCurr still points to ListNode(4), which is no longer part of the list.
+ *
+ *                                                    pPrev                       pCurr
+ *                                                     |                           |
+ *                                                     |                           |
+ *                                                     v                           v
+ *  LinkedList      ListNode(1)     ListNode(2)     ListNode(3)                 ListNode(4)  (removed)
+ *  +----------+    +--------+      +--------+      +--------+                  +--------+
+ *  |firstNode ---->| next   |----> | next   |----> | next   |----> NULL        | next   |   (not in list)
+ *  +----------+    +--------+      +--------+      +--------+                  +--------+
+ *  |nodeCount |    | data   |      | data   |      | data   |                  | data   |
+ *  +----------+    +--------+      +--------+      +--------+                  +--------+
+ *                      |               |               |                           |
+ *                      v               v               v                           v
+ *                  +--------+      +--------+      +--------+                  +--------+
+ *                  |ListData|      |ListData|      |ListData|                  |ListData|
+ *                  +--------+      +--------+      +--------+                  +--------+
+ */
+
+
 ListNode* RemoveNodeFromBack(LinkedList* pList){
     if (isEmpty(pList)) {
         return NULL;

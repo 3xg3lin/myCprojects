@@ -20,6 +20,20 @@ void OutOfStorage(void){
     exit(EXIT_FAILURE);
 }
 
+/*
+ *  LinkedList              ListNode                ListNode                ListNode
+ * +------------+         +----------+            +----------+            +----------+
+ * | pFirstNode |-------->| pNext    |----------->| pNext    |----------->| pNext    |----> NULL
+ * +------------+         +----------+            +----------+            +----------+
+ * | nodeCount  |         | pData    |            | pData    |            | pData    |
+ * +------------+         +----+-----+            +----+-----+            +----+-----+
+ *                             |                       |                       |
+ *                             v                       v                       v
+ *                        +---------+             +---------+             +---------+
+ *                        | ListData|             | ListData|             | ListData|
+ *                        +---------+             +---------+             +---------+
+ */
+
 typedef struct _Node {
     struct _Node* pNext;
     ListData* pData;
@@ -47,18 +61,66 @@ int Size(LinkedList* pList){
 }
 
 /*
- *  LinkedList              ListNode                ListNode                ListNode
- * +------------+         +----------+            +----------+            +----------+
- * | pFirstNode |-------->| pNext    |----------->| pNext    |----------->| pNext    |----> NULL
- * +------------+         +----------+            +----------+            +----------+
- * | nodeCount  |         | pData    |            | pData    |            | pData    |
- * +------------+         +----+-----+            +----+-----+            +----+-----+
- *                             |                       |                       |
- *                             v                       v                       v
- *                        +---------+             +---------+             +---------+
- *                        | ListData|             | ListData|             | ListData|
- *                        +---------+             +---------+             +---------+
+ * BEFORE inserting pNode at the front:
+ *
+ *   LinkedList          ListNode        ListNode        ListNode
+ *   +----------+       +--------+      +--------+      +--------+
+ *   |firstNode |------>| pNext  |----->| pNext  |----->| pNext  |----> NULL
+ *   +----------+       +--------+      +--------+      +--------+
+ *   |nodeCount |       | pData  |      | pData  |      | pData  |
+ *   +----------+       +--------+      +--------+      +--------+
+ *                           |               |               |
+ *                           v               v               v
+ *                       +--------+      +--------+      +--------+
+ *                       |ListData|      |ListData|      |ListData|
+ *                       +--------+      +--------+      +--------+
+ *
+ *   pNode
+ *   +--------+
+ *   | pNext  |----> NULL
+ *   +--------+
+ *   | pData  |
+ *   +--------+
+ *       |
+ *       v
+ *   +--------+
+ *   |ListData|
+ *   +--------+
+ *   (a separate node, not linked to the list yet)
+ *
+ *
+ * AFTER InsertNodeToFront: pFirstNode redirects to pNode [1],
+ * and pNode->pNext redirects to the old first node [2].
+ *
+ *  LinkedList                      ListNode  (1)  ListNode  (2)
+ *  +----------+                    +--------+     +--------+
+ *  |firstNode ----. [1]     `----> | pNext  |---->| pNext  |----> NULL
+ *  +----------+      |      |      +--------+     +--------+
+ *  |nodeCount |      |      |      | pData  |     | pData  |
+ *  +----------+      |      |      +--------+     +--------+
+ *                    |      |          |
+ *                    |      |          v
+ *                    |      |      +--------+
+ *                    |      |      |ListData|
+ *                    |      |      +--------+
+ *                    |      |
+ *                    |      |
+ *              pNode v      |
+ *              +--------+   |
+ *              | pNext  |----. [2]
+ *              +--------+
+ *              | pData  |
+ *              +--------+
+ *                  |
+ *                  v
+ *              +--------+
+ *              |ListData|
+ *              +--------+
+ *
+ * [1] pFirstNode now points to pNode
+ * [2] pNode->pNext now points to the old first node (ListNode 1)
  */
+
 void InsertNodeToFront(LinkedList* pList, ListNode* pNode){
     ListNode* pNext = pList->pFirstNode;  // The old first node must be saved BEFORE overwriting pFirstNode. This temp variable pNext is created for that purpose.
     pList->pFirstNode = pNode;            // Make pNode the new first node of the list.

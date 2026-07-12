@@ -185,3 +185,13 @@ void InsertNodeToBack(LinkedList* pList, ListNode* pNode){
     }
     pList->nodeCount++;                  // And update the count
 }
+
+ListNode* RemoveNodeFromFront(LinkedList* pList){
+    if (isEmpty(pList)) {
+        return NULL;
+    }
+    ListNode* pCurr = pList->pFirstNode;
+    pList->pFirstNode = pList->pFirstNode->pNext;
+    pList->nodeCount--;
+    return pCurr;
+}

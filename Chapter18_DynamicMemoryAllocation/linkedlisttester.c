@@ -128,6 +128,48 @@ void InsertNodeToFront(LinkedList* pList, ListNode* pNode){
     pList->nodeCount++;                   // And update the count
 }
 
+/*
+ * BEFORE InsertNodeToBack:
+ * pCurr's node ends in NULL -- it's the actual last node of the list.
+ * pNode is separate, not part of the list at all yet.
+ *
+ *                                                    pCurr                   pNode(separate)
+ *                                                     |                       |
+ *                                                     |                       |
+ *                                                     v                       v
+ *  LinkedList      ListNode        ListNode        ListNode                ListNode (pNode)
+ *  +----------+    +--------+      +--------+      +--------+              +--------+
+ *  |firstNode ---->| next   |----> | next   |----> | next   |----> NULL    | next   |
+ *  +----------+    +--------+      +--------+      +--------+              +--------+
+ *  |nodeCount |    | data   |      | data   |      | data   |              | data   |
+ *  +----------+    +--------+      +--------+      +--------+              +--------+
+ *                      |               |               |                       |
+ *                      v               v               v                       v
+ *                  +--------+      +--------+      +--------+              +--------+
+ *                  |ListData|      |ListData|      |ListData|              |ListData|
+ *                  +--------+      +--------+      +--------+              +--------+
+ *
+ *
+ * AFTER InsertNodeToBack: pCurr->pNext now points to pNode.
+ * pNode is now part of the list, and is the new last node (ends in NULL).
+ *
+ *                                                    pCurr          pNode
+ *                                                     |              |
+ *                                                     |              |
+ *                                                     v              v
+ *  LinkedList      ListNode        ListNode        ListNode       ListNode (pNode)
+ *  +----------+    +--------+      +--------+      +--------+     +--------+
+ *  |firstNode ---->| next   |----> | next   |----> | next   |---->| next   |----> NULL
+ *  +----------+    +--------+      +--------+      +--------+     +--------+
+ *  |nodeCount |    | data   |      | data   |      | data   |     | data   |
+ *  +----------+    +--------+      +--------+      +--------+     +--------+
+ *                      |               |               |              |
+ *                      v               v               v              v
+ *                  +--------+      +--------+      +--------+     +--------+
+ *                  |ListData|      |ListData|      |ListData|     |ListData|
+ *                  +--------+      +--------+      +--------+     +--------+
+ */
+
 void InsertNodeToBack(LinkedList* pList, ListNode* pNode){
     if (isEmpty(pList)){
         pList->pFirstNode = pNode;        // Empty list -> pNode is simply the first node.

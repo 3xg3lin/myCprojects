@@ -322,3 +322,12 @@ ListNode* GetNode(LinkedList* pList, int pos){
         return pCurr;
     }
 }
+
+ListNode* CreateNode(ListData* pData){
+    ListNode* pNewNode = (ListNode*)calloc(1, sizeof(ListNode));
+    if (NULL == pNewNode) {
+        OutOfStorage();
+    }
+    pNewNode->pData = pData;
+    return pNewNode;
+}

@@ -63,7 +63,7 @@ int Size(LinkedList* pList){
 /*
  * BEFORE inserting pNode at the front:
  *
- *   LinkedList          ListNode        ListNode        ListNode
+ *   LinkedList          ListNode(1)     ListNode(2)     ListNode(3)
  *   +----------+       +--------+      +--------+      +--------+
  *   |firstNode |------>| pNext  |----->| pNext  |----->| pNext  |----> NULL
  *   +----------+       +--------+      +--------+      +--------+
@@ -92,7 +92,7 @@ int Size(LinkedList* pList){
  * AFTER InsertNodeToFront: pFirstNode redirects to pNode [1],
  * and pNode->pNext redirects to the old first node [2].
  *
- *  LinkedList                      ListNode  (1)  ListNode  (2)
+ *  LinkedList                      ListNode(1)    ListNode(2)
  *  +----------+                    +--------+     +--------+
  *  |firstNode ----. [1]     `----> | pNext  |---->| pNext  |----> NULL
  *  +----------+      |      |      +--------+     +--------+

@@ -301,3 +301,24 @@ ListNode* RemoveNodeFromBack(LinkedList* pList){
     pList->nodeCount--;
     return pCurr;
 }
+
+ListNode* GetNode(LinkedList* pList, int pos){
+    ListNode* pCurr = pList->pFirstNode;
+    if (NULL == pCurr) {
+        return pList->pFirstNode;
+    }
+    else if (pos == 0) {
+        return pList->pFirstNode;
+    }
+    else {
+        int i = 0;
+        while (NULL != pCurr->pNext) {
+            if (i == pos) {
+                return pCurr;
+            }
+            i++;
+            pCurr = pCurr->pNext;
+        }
+        return pCurr;
+    }
+}

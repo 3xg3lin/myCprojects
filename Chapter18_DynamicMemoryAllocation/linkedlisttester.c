@@ -384,6 +384,26 @@ ListData* CreateData(ListData d){
     return pD;
 }
 
+void TestPrintOperation(LinkedList* pLL, eAction action, ListData data, eWhere where){
+    switch (action) {
+        case eLook:
+            data = TestExamineNode(pLL, where);
+            printf("Get %s node, see [%2d]. ", where == eFront ? "front" : "back", data);
+            break;
+        case eInsert:
+            printf("Insert [%2d] to %s. ", data, where == eFront ? "front" : "back");
+            TestCreateNodeAndInsert(pLL, data, where);
+            break;
+        case eDelete:
+            data = TestRemoveNodeAndFree(pLL, where);
+            printf("Remove [%2d] from %s. ", data, where == eFront ? "front" : "back" );
+            break;
+        default:
+            printf("::ERROR:: unknown action\n");
+            break;
+    }
+    PrintList(pLL, PrintInt);
+}
 
 int main(){
     LinkedList* pLL = CreateLinkedList();

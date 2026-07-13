@@ -386,7 +386,7 @@ ListData* CreateData(ListData d){
 
 void TestCreateNodeAndInsert(LinkedList* pLL, ListData data, eWhere where){
     ListData* pData = CreateData(data);
-    ListData* pNode = CreateNode(pData);
+    ListNode* pNode = CreateNode(pData);
 
     switch (where) {
         case eFront:

@@ -372,7 +372,7 @@ void PrintList(LinkedList* pList, void (*printData)(ListData* pData)){
 }
 
 void PrintInt(int* i){
-    printf("%2d", i);
+    printf("%2d", *i);
 }
 
 ListData* CreateData(ListData d){

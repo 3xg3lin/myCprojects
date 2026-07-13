@@ -370,3 +370,55 @@ void PrintList(LinkedList* pList, void (*printData)(ListData* pData)){
     }
     printf("]\n");
 }
+
+void PrintInt(int* i){
+    printf("%2d", i);
+}
+
+ListData* CreateData(ListData d){
+    ListData* pD = (ListData*)calloc(1, sizeof(ListData));
+    if (pD == NULL) {
+        OutOfStorage();
+    }
+    *pD = d;
+    return pD;
+}
+
+
+int main(){
+    LinkedList* pLL = CreateLinkedList();
+    printf( "Input or operation         "
+            "Current state of linked list\n"
+            "=========================  "
+            "======================================");
+    printf( "\nUsing input{ 1  2  3  4 }. " );
+    int data1[] = {1, 2, 3, 4};
+    int data1Size = 4;
+
+    // PrintInt is passed without parentheses -- printData inside PrintList
+    // is waiting for an address, not a call. We're not calling PrintInt
+    // here; we're just handing over its address for PrintList to call later.
+    PrintList(pLL, PrintInt);
+
+    for (int i = 0; i < data1Size; i++) {
+        TestPrintOperation(pLL, eInsert, data1[i], eFront);
+    }
+
+    TestPrintOperation(pLL, eLook, 0, eFront);
+    TestPrintOperation(pLL, eDelete, 0, eBack);
+
+    printf("\nUsing input{ 31, 32, 33 }");
+    PrintList(pLL, PrintInt);
+    int data2[] = {31, 32, 33};
+    int data2Size = 3;
+
+    for (int i = 0; i < data2Size; i++) {
+        TestPrintOperation(pLL, eInsert, data2[i], eBack);
+    }
+    TestPrintOperation(pLL, eLook, 0, eBack);
+
+    int count = pLL->nodeCount;
+    for (int i = 0; i < count; i ++) {
+        TestPrintOperation(pLL, eDelete, 0, eFront);
+    }
+}

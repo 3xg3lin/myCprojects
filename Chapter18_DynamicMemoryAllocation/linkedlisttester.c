@@ -384,6 +384,49 @@ ListData* CreateData(ListData d){
     return pD;
 }
 
+void TestCreateNodeAndInsert(LinkedList* pLL, ListData data, eWhere where){
+    ListData* pData = CreateData(data);
+    ListData* pNode = CreateNode(pData);
+
+    switch (where) {
+        case eFront:
+            InsertNodeToFront(pLL, pNode);
+            break;
+        case eBack:
+            InsertNodeToBack(pLL, pNode);
+            break;
+    }
+}
+
+ListData TestExamineNode(LinkedList* pLL, eWhere where){
+    ListNode* pNode;
+    switch (where) {
+        case eFront:
+            pNode = GetNode(pLL, 0);
+            break;
+        case eBack:
+            pNode = GetNode(pLL, pLL->nodeCount);
+            break;
+    }
+    ListData data = *(pNode->pData);
+    return data;
+}
+
+ListData TestRemoveNodeAndFree(LinkedList* pLL, eWhere where){
+    ListNode* pNode;
+    switch (where) {
+        case eFront:
+            pNode = RemoveNodeFromFront(pLL);
+            break;
+        case eBack:
+            pNode = RemoveNodeFromBack(pLL);
+            break;
+    }
+    ListData data = *(pNode->pData);
+    DeleteNode(pNode);
+    return data;
+}
+
 void TestPrintOperation(LinkedList* pLL, eAction action, ListData data, eWhere where){
     switch (action) {
         case eLook:

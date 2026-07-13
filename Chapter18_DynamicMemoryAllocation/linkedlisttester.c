@@ -362,17 +362,17 @@ void PrintNode(ListNode* pNode, void (*printData)(ListData* pData)){
  */
 
 void PrintList(LinkedList* pList, void (*printData)(ListData* pData)){
-    printf("List has %2d entries: [", Size(pList));
+    printf("List has %2d entries: [ ", Size(pList));
     ListNode* pCurr = pList->pFirstNode;
     while (NULL != pCurr) {
         PrintNode(pCurr, printData);
         pCurr = pCurr->pNext;
     }
-    printf("]\n");
+    printf(" ]\n");
 }
 
 void PrintInt(int* i){
-    printf("%2d", *i);
+    printf(" %2d ", *i);
 }
 
 ListData* CreateData(ListData d){
@@ -470,7 +470,7 @@ int main(){
     TestPrintOperation(pLL, eLook, 0, eFront);
     TestPrintOperation(pLL, eDelete, 0, eBack);
 
-    printf("\nUsing input{ 31, 32, 33 }");
+    printf("\nUsing input{ 31, 32, 33 } ");
     PrintList(pLL, PrintInt);
     int data2[] = {31, 32, 33};
     int data2Size = 3;

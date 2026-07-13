@@ -337,6 +337,18 @@ void DeleteNode(ListNode* pNode){
     free(pNode);
 }
 
+/*
+ * When we declare a pointer to a function, we need more than just an
+ * address to store -- the pointer's declared return type and parameter
+ * list must exactly match the function it will be used to call.
+ *
+ * void (*printData)(ListData* pData);   // function pointer:  void, takes ListData*
+ * void  PrintInt(ListData* pData);      // function prototype: void, takes ListData*
+ *
+ * Same shape (void, one ListData* parameter), so this is valid:
+ *     printData = PrintInt;
+ */
+
 void PrintNode(ListNode* pNode, void (*printData)(ListData* pData)){
     printData(pNode->pData);
 }

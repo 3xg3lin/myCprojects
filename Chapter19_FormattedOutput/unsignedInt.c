@@ -6,45 +6,49 @@ int main(){
     int negativeInt = -smallInt;
     unsigned anUnsigned = 130;
 
-    printf( " Unsigned Printf \n"
+    printf(" Unsigned Printf \n"
               "  Base        Base-8        Base-10         Base-16         BASE-16\n"
               "  Name         octal        unsigned     hexadeximal     HEXADECIMAL\n"
               "  Specifier     %%12o            %%12u            %%12x            %%12X \n" );
     printf(" -------------------- " "--------------- "
         "--------------- " "---------------\n");
     printf("       [%12o]  [%12u]  [%12x]  [%12X]\n", smallInt, anUnsigned, smallInt, smallInt);
-    printf( "       [%12o]  [%12u]  [%12x]  [%12X]\n", largeInt, largeInt, largeInt, largeInt);
-    printf( "       [%12o]  [%12u]  [%12x]  [%12X]\n\n", anUnsigned, anUnsigned, anUnsigned, anUnsigned);
+    printf("       [%12o]  [%12u]  [%12x]  [%12X]\n", largeInt, largeInt, largeInt, largeInt);
+    printf("       [%12o]  [%12u]  [%12x]  [%12X]\n\n", anUnsigned, anUnsigned, anUnsigned, anUnsigned);
 
-    printf( "  Specifier      %%#o             %%#u             %%#x             %%#X\n");
+    printf("  Specifier      %%#o             %%#u             %%#x             %%#X\n");
     printf(" -------------------- " "--------------- "
         "--------------- " "---------------\n");
-    printf( "       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", smallInt, smallInt, smallInt, smallInt);
-    printf( "       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", largeInt, largeInt, largeInt, largeInt);
-    printf( "       [%#12o]  [%12u]  [%#12x]  [%#12X]\n\n", anUnsigned, anUnsigned, anUnsigned, anUnsigned);
+    printf("       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", smallInt, smallInt, smallInt, smallInt);
+    printf("       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", largeInt, largeInt, largeInt, largeInt);
+    printf("       [%#12o]  [%12u]  [%#12x]  [%#12X]\n\n", anUnsigned, anUnsigned, anUnsigned, anUnsigned);
 
-    printf( "  Negative Numbers as Unsigned:\n" );
+    printf("  Negative Numbers as Unsigned:\n" );
     printf(" -------------------- " "--------------- "
         "--------------- " "---------------\n");
-    printf( "  -0   [%12o]  [%12u]  [%12x]  [%12X]\n", -0, -0, -0, -0);
-    printf( "  -1   [%12o]  [%12u]  [%12x]  [%12X]\n", -1, -1, -1, -1);
-    printf( "  -2   [%12o]  [%12u]  [%12x]  [%12X]\n", -2, -2, -2, -2);
-    printf( " -12   [%12o]  [%12u]  [%12x]  [%12X]\n\n", negativeInt, negativeInt, negativeInt, negativeInt);
+    printf("  -0   [%12o]  [%12u]  [%12x]  [%12X]\n", -0, -0, -0, -0);
+    printf("  -1   [%12o]  [%12u]  [%12x]  [%12X]\n", -1, -1, -1, -1);
+    printf("  -2   [%12o]  [%12u]  [%12x]  [%12X]\n", -2, -2, -2, -2);
+    printf(" -12   [%12o]  [%12u]  [%12x]  [%12X]\n\n", negativeInt, negativeInt, negativeInt, negativeInt);
 
-    printf( "Powers of 2: 2^0, 2^2, 2^4, 2^6, 2^8 , 2^10\n" );
+    printf("Powers of 2: 2^0, 2^2, 2^4, 2^6, 2^8 , 2^10\n" );
     int k = 1;
     printf(" -------------------- " "--------------- "
         "--------------- " "---------------\n");
     for (int i = 0; i < 6; i++, k<<=2) {
-        printf( "       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", k, k, k, k);
+        printf("       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", k, k, k, k);
     }
 
-    printf( "\nPowers of 9: 9^1, 9^2, 9^3, 9^4\n" );
-    printf( "  Specifier       %%o              %%u              %%x              %%X \n" );
+    printf("\nPowers of 9: 9^1, 9^2, 9^3, 9^4\n" );
+    printf("  Specifier       %%o              %%u              %%x              %%X \n" );
     printf(" -------------------- " "--------------- "
         "--------------- " "---------------\n");
     k = 9;
     for( int i = 0 ; i < 5 ; i++ , k*=9 )  {
-        printf( "       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", k, k, k, k);
+        printf("       [%#12o]  [%12u]  [%#12x]  [%#12X]\n", k, k, k, k);
     }
+
+    printf("\nPointer Output\n");
+    printf(" %%p       [%p]   pointer\n", &smallInt);
+    printf(" %%#lx     [%#lx]   using hex\n\n", (unsigned long)&smallInt);
 }

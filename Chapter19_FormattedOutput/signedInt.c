@@ -8,10 +8,10 @@ int main(void){
     long long int reallyLargeInt = 0x7fffffffffffffff;
 
     printf( " Signed Printf \n"
-              "  Name    right     left         zero      right     left\n"
-              "        aligned     aligned    filled    minimum     minimum    whatever\n"
-              "  Specifier    %%10d           %%-10d        %%-.10d          %%10.3d        %%-10.3d     %%d\n" );
-    printf(" -------------------- " "--------------- "
-        "--------------- " "---------------\n");
+              "  Name         right        left        zero         right       left\n"
+              "              aligned      aligned     filled       minimum     minimum    whatever\n"
+              "  Specifier    %%10d        %%-10d       %%-.10d       %%10.3d     %%-10.3d     %%d\n" );
+    printf(" ---------  ---------- " " ----------- "
+        " ----------- " " ---------- " " ---------- " " ---------\n");
 
 }

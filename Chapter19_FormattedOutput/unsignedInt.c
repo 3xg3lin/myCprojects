@@ -10,5 +10,7 @@ int main(){
               "  Base        Base-8        Base-10         Base-16         BASE-16\n"
               "  Name         octal        unsigned     hexadeximal     HEXADECIMAL\n"
               "  Specifier     %%12o            %%12u            %%12x            %%12X \n" );
-
+    printf("       [%12o]  [%12u]  [%12x]  [%12X]\n", smallInt, anUnsigned, smallInt, smallInt);
+    printf( "       [%12o]  [%12u]  [%12x]  [%12X]\n", largeInt, largeInt, largeInt, largeInt);
+    printf( "       [%12o]  [%12u]  [%12x]  [%12X]\n\n", anUnsigned, anUnsigned, anUnsigned, anUnsigned);
 }

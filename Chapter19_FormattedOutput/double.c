@@ -25,4 +25,12 @@ int main(){
 
     printf(" %%a        [%a] hexidecimal version of double, exponent=2^p\n", aDouble);
     printf(" %%A        [%A] HEXIDECIMAL version of double, exponent=2^P\n\n", aDouble);
+
+    printf("Use of the %%g, and %%G format specifiers:\n");
+    printf(" Specifier             %%18.12g               %%18.3g");
+    printf("                %%18.3G                  %%18g\n");
+    double k = aDouble * 1e-15;
+    for (int i = 0; i < 10; i++, k *= 1000) {
+        printf("          [%18.12g]  [%18.3g]  [%18.3G]  [%18g]\n", k, k, k, k);
+    }
 }

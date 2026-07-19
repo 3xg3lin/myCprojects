@@ -14,6 +14,16 @@ typedef struct _book{
 } Book;
 
 void Usage(char* exec){
-    printf( "\nUsage: %s -r -p -t 'title' -a 'name' -y year\n\n" , exec );
+    printf("\nUsage: %s -r -p -t 'title' -a 'name' -y year\n\n", exec);
     exit(1);
+}
+
+void PrintArgs(int argc, char** argv){
+    printf("argument count = [%d]\n", argc);
+    printf("%s ", argv[0]);
+    for( int i = 1; i < argc; i++)  {
+        printf("%s ", argv[i]);
+    }
+    putchar( '\n' );
+    putchar( '\n' );
 }

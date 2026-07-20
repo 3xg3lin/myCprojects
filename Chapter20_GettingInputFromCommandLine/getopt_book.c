@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
 
     PrintArgs(argc, argv);
 
-    while ((ch == getopt(argc, argv, options_string)) != -1) {
+    while ((ch = getopt(argc, argv, options_string)) != -1) {
         switch (ch) {
             case 'p':
                 book.bPublished = true;

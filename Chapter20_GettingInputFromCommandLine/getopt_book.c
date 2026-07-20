@@ -27,3 +27,17 @@ void PrintArgs(int argc, char** argv){
     putchar( '\n' );
     putchar( '\n' );
 }
+
+int main(int argc, char* argv[]){
+    char ch;
+    Book book = {false, false, 0, 0, 0};
+
+    PrintArgs(argc, argv);
+
+    while (ch == getopt(argc, argv, options_string)) {
+        switch (ch) {
+            book.bPublished = true;
+            break;
+        }
+    }
+}

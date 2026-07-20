@@ -36,8 +36,24 @@ int main(int argc, char* argv[]){
 
     while (ch == getopt(argc, argv, options_string)) {
         switch (ch) {
-            book.bPublished = true;
-            break;
+            case 'p':
+                book.bPublished = true;
+                break;
+            case 'r':
+                book.bReprint = true;
+                break;
+            case 't':
+                book.title = optarg;
+                break;
+            case 'a':
+                book.author = optarg;
+                break;
+            case 'y':
+                book.year = optarg;
+                break;
+            default:
+                Usage(argv[0]);
+                break;
         }
     }
 }

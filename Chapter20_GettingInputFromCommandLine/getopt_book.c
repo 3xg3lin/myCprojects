@@ -56,4 +56,20 @@ int main(int argc, char* argv[]){
                 break;
         }
     }
+    printf( " Title is [%s]\n" , book.title );
+    printf( "Author is [%s]\n" , book.author );
+    printf( "Published [%s]\n" , book.bPublished ? "yes" : "no" );
+    if (book.year) {
+        printf("Year is [%s]\n", book.year);
+    }
+    printf( "Reprinted [%s]\n" , book.bReprint? "yes" : "no" );
+    if (optind < argc) {
+        printf("non-option ARGV-elements: ");
+        while (optind < argc) {
+            printf("%s ", argv[optind++]);
+        }
+        putchar('\n');
+    }
+    putchar('\n');
+    return 0;
 }

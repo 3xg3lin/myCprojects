@@ -21,3 +21,28 @@ char* safe_gets(char* buf, int size){
         return NULL;           // fgets() failed; return NULL to indicate failure.
     }
 }
+
+int main(){
+    char stringBuffer[kBufferSize] = {0};
+
+    // UNSAFE: Do Not Ever Use gets().
+    // gets() removed in C11 and later, but may still
+    // be available.
+    // Even if available, do not use gets().
+
+    printf("Enter a string: ");
+    gets(stringBuffer);
+    puts("You entered: ");
+    puts(stringBuffer);
+
+    // SAFE: Instead, use fgets() & removed trailing '\n'
+    // Or, use safe_gets() given above.
+    // Or, if available, use gets_s() in C11 and later.
+
+    printf("\nEnter another string: ");
+    safe_gets(stringBuffer, kBufferSize);
+    puts("You entered: ");
+    puts(stringBuffer);
+
+    return 0;
+}

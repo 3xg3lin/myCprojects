@@ -77,10 +77,15 @@ void addName(string* names, string newName, int* pNumEntries){
         bool found = false;   /* When found is true, newName goes before an existing
                                  name in the list. */
 
-        /* Scan through list looking for existing name that newName should come
-                 before. If not found, k is the end of the list. */
+        /* Scan through list looking for existing name that newName should come before. If not found, k is the end of the list. */
         while (!found && k < *pNumEntries) {
+            // strcmp(a, b) < 0 means a comes before b alphabetically
             found = (strcmp(newName, names[k++]) < 0);
+            // strcmp(a, b) returns:
+            //   negative  -> a comes BEFORE b alphabetically
+            //   0         -> a and b are equal
+            //   positive  -> a comes AFTER b alphabetically
+            // (magnitude doesn't matter, only the sign)
         }
 
         if(found){

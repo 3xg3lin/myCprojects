@@ -40,3 +40,29 @@ int getName(char* buf, int size){
         return 0;
     }
 }
+
+int main(){
+    string newName;
+    string nameList[kListMax];
+    int numNames = 0;
+
+    #if 0
+    // You can do a lot with the sequence , operator.
+    // However, what's going on is rather confusing.
+        while(printf("Name: %d: ", numNames+1)),
+        fgets(newName, kStringMax, stdin),
+        removeNewLine(newName),
+        strlen(newName) > 0) {
+            addName(nameList, newName, &numNames);
+        }
+
+    #else
+    // But why when you can write a single function?
+    while (printf("Name: %d: ", numNames+1), getName(newName, kStringMax) > 0) {
+            addName(nameList, newName, &numNames);
+    }
+    #endif
+    printNames(nameList, numNames);
+
+    return 0;
+}

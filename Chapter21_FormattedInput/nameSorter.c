@@ -66,3 +66,41 @@ int main(){
 
     return 0;
 }
+
+void addName(string* names, string newName, int* pNumEntries){
+    if (*pNumEntries >= kListMax) {
+        puts("List is full!!");
+        return;  /* the array is full  (this return is unnecessary) */
+    }
+    else {
+        int k = 0;            /* k is position in list to insert newName. */
+        bool found = false;   /* When found is true, newName goes before an existing
+                                 name in the list. */
+
+        /* Scan through list looking for existing name that newName should come
+                 before. If not found, k is the end of the list. */
+        while (!found && k < *pNumEntries) {
+            found = (strcmp(newName, names[k++]) < 0);
+        }
+
+        if(found){
+            /* Move k back one place to insert newName at k-th position.*/
+            k--;
+            /* Move each exising name back in the list, making a space newName */
+            for (int j = *pNumEntries; j > k; j--) {
+                strcpy(names[j], names[j-1]);
+            }
+        }
+        /* Insert new string in list at k-th position. */
+        strcpy(names[k], newName);
+        (*pNumEntries)++;
+    }
+}
+
+void printNames(string *names, int numEntries){
+    printf("\nNumber of Entries: %d\n\n", numEntries);
+    for (int i = 0; i < numEntries; i++) {
+        fputs(names[i], stdout);
+        fputc('\n', stdout);
+    }
+}

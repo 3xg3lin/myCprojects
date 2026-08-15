@@ -50,4 +50,29 @@ int main(){
     // like this one both invoke the same rule, because what matters is
     // only the target type being unsigned, not the syntax used to convert.
     // --------------------------------------------------------------------
+    printf("uc = EOF is %d (%d is converted to %d)\n\n", uc, EOF, uc);
+
+    printf("(constant) EOF [%d] and unsigned char uc [%d] are NOT equal\n\n", EOF, uc);
+
+    if ((unsigned char)EOF == uc) {
+        printf("(unsigned char)EOF [%d] and unsigned char uc [%d] are equal\n", (unsigned char)EOF, uc);
+    }
+    else {
+        printf("(unsigned char)EOF [%d] and unsigned char uc [%d] are NOT equal\n", (unsigned char)EOF, uc);
+    }
+
+    if (EOF == (signed char)uc) {
+        printf("(constant) EOF [%d] and (signed char)uc [%d] are equal\n", EOF, (signed char)uc);
+    }
+    else {
+        printf("(constant) EOF [%d] and (signed char)uc [%d] are NOT equal\n", EOF, (signed char)uc);
+    }
+
+    if (EOF == (signed int)uc) {
+        printf("(constant) EOF [%d] and (signed int)uc [%d] are equal\n", EOF, (signed int)uc);
+    }
+    else {
+        printf("(constant) EOF [%d] and (signed int)uc [%d] are NOT equal\n", EOF, (signed int)uc);
+    }
+    return 0;
 }

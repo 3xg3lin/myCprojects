@@ -25,10 +25,15 @@ int main(){
 
     printf( "FILENAME_MAX on this system is %d bytes\n", FILENAME_MAX );
 
-    char inputFilename[] = "./input.data";
-    char outputFilename[] = "./output.data";
+    char* inputFilename = (char*)calloc(FILENAME_MAX, 1);
+    char* outputFilename = (char*)calloc(FILENAME_MAX, 1);
+    if (!inputFilename || !outputFilename) {
+        fprintf(stderr, "FATAL ERROR: Not Enough memory for filename strings\n");
+        exit(EXIT_FAILURE);
+    }
 
-    // fopen() returns a pointer to a FILE struct on success, or NULL on failure
+    fprintf(stdout, "Enter name of input files: ");
+    safe_gets(inputFilename, FILENAME_MAX);
     inputFile = fopen(inputFilename, "r");   // "r" = open for reading, file must already exist
     if (NULL == inputFile) {
         // errno was set by fopen(); strerror() turns it into a readable message
@@ -36,6 +41,8 @@ int main(){
         exit(EXIT_FAILURE);
     }
 
+    fprintf(stdout, "Enter name of output file: ");
+    safe_gets(outputFilename, FILENAME_MAX);
     outputFile = fopen(outputFilename, "w");  // "w" = open for writing, creates file or truncates if it exists
     if (NULL == outputFile) {
         fprintf(stderr, "input file: %s: %s\n", outputFilename, strerror(errno));
@@ -51,6 +58,8 @@ int main(){
     fclose(inputFile);    // closes stream, releases the FILE struct
     fflush(outputFile);   // forces buffered data to be written out (fclose would do this anyway)
     fclose(outputFile);
+    free(inputFilename);
+    free(outputFilename);
 
     fprintf(stderr, "Done.\n");
     return 0;

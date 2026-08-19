@@ -26,4 +26,9 @@ int main(){
     fprintf(stderr, "\"%s\" opened for writing.\n", outputFilename);
     fprintf(stderr, "Do work here.\n");
     fprintf(stderr, "Closing files.\n");
+    fclose(inputFile);
+    fflush(outputFile);
+    fclose(outputFile);
+    fprintf(stderr, "Done.\n");
+    return 0;
 }

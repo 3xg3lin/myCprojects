@@ -3,58 +3,63 @@
 #include <string.h>     // for strerror()
 #include <sys/errno.h>  // for errno
 
-// Reads a line from stdin into buf (up to size bytes), and replaces the
-// trailing newline with '\0' so the caller doesn't have to deal with it.
-// Returns buf on success, NULL if fgets() failed (e.g. EOF/error).
+// Reads one line from stdin into buf (up to size bytes) and strips the
+// trailing newline that fgets() leaves in place, so buf ends up holding
+// a clean string with no '\n'.
+// Returns buf on success, or NULL if fgets() failed (e.g. EOF was hit
+// before any input was read).
 char* safe_gets(char* buf, int size){
-    if (fgets(buf, size, stdin)) {          // fgets() keeps the '\n' if it fits
+    if (fgets(buf, size, stdin)) {          // fgets() reads a line, keeps '\n' if it fits
         for (int i = 0; i < size; i++) {
             if ('\n' == buf[i]) {
-                buf[i] = '\0';               // strip the newline, terminate string here
-                break;
+                buf[i] = '\0';               // overwrite '\n' with the string terminator
+                break;                        // stop scanning, nothing left to do
             }
         }
         return buf;
     }
     else {
-        return NULL;                        // fgets failed: no input read
+        return NULL;                        // fgets failed, buf's contents are unreliable
     }
 }
 
 int main(){
-    FILE* inputFile;   // pointer to a FILE struct; fopen() will fill this in
+    FILE* inputFile;   // will hold the pointer fopen() returns for the input stream
     FILE* outputFile;  // same, for the output stream
 
-    // FILENAME_MAX is a constant from stdio.h: the largest filename size
-    // this system guarantees fopen() etc. can handle
+    // FILENAME_MAX (from stdio.h) is the largest filename size this
+    // system guarantees functions like fopen() can handle
     printf( "FILENAME_MAX on this system is %d bytes\n", FILENAME_MAX );
 
-    // calloc() allocates memory on the heap and zero-initializes it
-    // (unlike fixed-size arrays used before, this size is decided at runtime)
+    // Allocate the filename buffers on the heap instead of using fixed
+    // arrays, since we don't know the filenames until runtime (user input).
+    // calloc() also zero-initializes the memory, so an unfilled buffer is
+    // still a valid empty string rather than garbage.
     char* inputFilename = (char*)calloc(FILENAME_MAX, 1);
     char* outputFilename = (char*)calloc(FILENAME_MAX, 1);
 
-    if (!inputFilename || !outputFilename) {  // calloc() returns NULL if allocation fails
+    if (!inputFilename || !outputFilename) {  // calloc() returns NULL on allocation failure
         fprintf(stderr, "FATAL ERROR: Not Enough memory for filename strings\n");
         exit(EXIT_FAILURE);
     }
 
     fprintf(stdout, "Enter name of input files: ");
-    safe_gets(inputFilename, FILENAME_MAX);   // read filename typed by the user
+    safe_gets(inputFilename, FILENAME_MAX);   // read input filename typed by the user
 
-    inputFile = fopen(inputFilename, "r");   // "r" = open for reading, file must already exist
+    inputFile = fopen(inputFilename, "r");    // "r" = open for reading, file must already exist
     if (NULL == inputFile) {
-        // errno was set by fopen(); strerror() turns it into a readable message
+        // errno was set by fopen(); strerror() converts it to a readable message
         fprintf(stderr, "input file: %s: %s\n", inputFilename, strerror(errno));
         exit(EXIT_FAILURE);
     }
 
     fprintf(stdout, "Enter name of output file: ");
-    safe_gets(outputFilename, FILENAME_MAX);  // read output filename from user
+    safe_gets(outputFilename, FILENAME_MAX);  // read output filename typed by the user
 
-    outputFile = fopen(outputFilename, "w");  // "w" = open for writing, creates file or truncates if it exists
+    outputFile = fopen(outputFilename, "w");  // "w" = open for writing, creates file or truncates it if it exists
     if (NULL == outputFile) {
-        fprintf(stderr, "input file: %s: %s\n", outputFilename, strerror(errno));
+        // fixed: this used to say "input file" — leftover copy-paste bug
+        fprintf(stderr, "output file: %s: %s\n", outputFilename, strerror(errno));
         exit(EXIT_FAILURE);
     }
 
@@ -64,11 +69,11 @@ int main(){
     fprintf(stderr, "Do work here.\n");  // placeholder: actual read/write logic goes here
 
     fprintf(stderr, "Closing files.\n");
-    fclose(inputFile);    // closes stream, releases the FILE struct
-    fflush(outputFile);   // forces buffered data to be written out (fclose would do this anyway)
+    fclose(inputFile);    // closes the stream and releases its FILE struct
+    fflush(outputFile);   // forces buffered data out immediately (fclose would flush anyway)
     fclose(outputFile);
 
-    // heap memory must be freed manually — unlike the fixed arrays in the earlier version
+    // heap-allocated buffers must be freed manually, unlike fixed arrays
     free(inputFilename);
     free(outputFilename);
 

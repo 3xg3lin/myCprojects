@@ -48,3 +48,4 @@ int main(){
     safe_gets(outputFilename, FILENAME_MAX);  // get output filename from user
 
     outputFile = fopen(outputFilename, "w");  // "w" = open for writing, creates/truncates
+}

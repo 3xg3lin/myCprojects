@@ -48,4 +48,24 @@ int main(){
     safe_gets(outputFilename, FILENAME_MAX);  // get output filename from user
 
     outputFile = fopen(outputFilename, "w");  // "w" = open for writing, creates/truncates
+    if (NULL == outputFile) {
+        fprintf(stderr, "output file: %s: %s\n", outputFilename, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(stderr, "\"%s\" opened for reading.\n", inputFilename);
+    fprintf(stderr, "\"%s\" opened for writing.\n", outputFilename);
+
+    fprintf(stderr, "Do work here.\n");  // placeholder for the actual read/write logic
+
+    fprintf(stderr, "Closing files.\n");
+    fclose(inputFile);    // close input stream
+    fflush(outputFile);   // flush output buffer (redundant, fclose flushes too)
+    fclose(outputFile);   // close output stream
+
+    free(inputFilename);  // free heap memory
+    free(outputFilename);
+
+    fprintf(stderr, "Done.\n");
+    return 0;
 }

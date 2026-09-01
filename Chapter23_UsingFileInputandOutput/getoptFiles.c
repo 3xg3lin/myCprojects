@@ -39,4 +39,21 @@ int main(int argc, char* argv[]){
                 break;
         }
     }
+
+    if (!inputFile){
+        inputFile = stdin;
+        fprintf(stderr, "Using stdin for input.\n");
+    }
+    if (!outputFile) {
+        outputFile = stdout;
+        fprintf(stderr, "Using stdout for output\n");
+    }
+
+    fprintf(stderr, "Do work here.\n");
+    fprintf(stderr, "Closing files.\n");
+    fclose(inputFile);
+    fflush(outputFile);
+    fclose(outputFile);
+    fprintf(stderr, "Done.\n");
+    return 0;
 }

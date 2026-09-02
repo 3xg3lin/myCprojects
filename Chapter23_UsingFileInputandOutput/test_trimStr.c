@@ -44,4 +44,24 @@ int trimStrInPlace(char* pStr){
     lenIn = strlen(pStr);
     char tmpStr[lenIn + 1];
     strcpy(tmpStr, pStr);
+    char* pTmp = tmpStr;
+
+    while (isspace(pTmp[first])) {
+        first++;
+    }
+    pTmp += first;
+
+    lenOut = strlen(pTmp);
+    if (lenOut) {
+        last = lenOut - 1;
+        while (isspace(pTmp[last])) {
+            last--;
+        }
+        pTmp[last + 1] = '\0';
+    }
+    lenOut = strlen(pTmp);
+    if (lenIn != lenOut) {
+        strcpy(pStr, pTmp);
+    }
+    return lenOut;
 }

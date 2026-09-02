@@ -65,3 +65,18 @@ int trimStrInPlace(char* pStr){
     }
     return lenOut;
 }
+
+void testTrim(int TestNum, char* pStr){
+    size_t len;
+    char testStr[strlen(pStr) + 1];
+    char* pTest;
+
+    strcpy(testStr, pStr);
+    fprintf(stderr, "%1d. original: \"%s\" [len:%d]\n", TestNum, testStr, (int)strlen(pStr));
+    pTest = trimStr(testStr);
+    fprintf(stderr, "trimStr: \"%s\" [len:%d]\n", pTest, (int)strlen(pTest));
+
+    strcpy(testStr, pStr);
+    len = trimStrInPlace(testStr);
+    fprintf(stderr, "   trimStr2: \"%s\" [len:%d]\n\n", testStr, (int)len);
+}

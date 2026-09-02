@@ -51,7 +51,11 @@ int main(int argc, char* argv[]){
         fprintf(stderr, "Using stdout for output\n");
     }
 
-    fprintf(stderr, "Do work here.\n");
+    char nameBuffer[kStringMax];
+
+    while (getName(inputFile, nameBuffer)) {
+            putName(nameBuffer, outputFile);
+    }
     fprintf(stderr, "Closing files.\n");
     fclose(inputFile);
     fflush(outputFile);

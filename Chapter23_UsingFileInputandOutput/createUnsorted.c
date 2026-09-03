@@ -1,4 +1,3 @@
-#include <bits/types/struct_itimerspec.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>

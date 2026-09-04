@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>       // for getopt
 #include <sys/errno.h>    // for errno
+#include "nameList.h"
 
 enum{
     kStringMax = 80

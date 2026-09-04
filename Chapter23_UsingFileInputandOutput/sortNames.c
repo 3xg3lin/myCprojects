@@ -32,7 +32,7 @@ int main(int argc, char* argv[]){
                 break;
             case 'o':
                 // try to open output file for appending
-                if (NULL == (outputFile = fopen(optarg, "a"))) {
+                if (NULL == (outputFile = fopen(optarg, "w"))) {
                     fprintf(stderr, "output file \"%s\": %s \n", optarg, strerror(errno));
                     exit(EXIT_FAILURE);
                 }

@@ -79,6 +79,17 @@ void usage(char* cmd){
     exit(EXIT_SUCCESS);
 }
 
+// getName -- Read nameString (a full line)
+//            If input is from stdin, give prompt.
+//            Trim excess whitespace before and after string
+//            (including <newline> which fgets() preserves).
+//  parameters:
+//    inFileDesc - input stream
+//    nameStr    - array of characters allocated by caller
+//  returns:
+//    length of nameStr. 0, or empty string, means end of input.
+//
+
 int getName(FILE* inFileDesc, char* pStr){
     static int numNames = 0;
     int len;
@@ -90,6 +101,10 @@ int getName(FILE* inFileDesc, char* pStr){
         fprintf(stdout, "Name %d: ", numNames+1);
     }
 
+    // In this use of fgets(), we do not need to be concerned here about the
+    // final newline; it will be removed along with other possible whitespace
+    // in the subsequent call to trimStr().
+
     fgets(pStr, kStringMax, inFileDesc);   // read one line
     len = trimStr(pStr);                   // strip whitespace
 
@@ -99,10 +114,26 @@ int getName(FILE* inFileDesc, char* pStr){
     return len;
 }
 
+// putName - write nameString, appending <newline>
+
 void putName(char* pStr, FILE* outFileDesc){
     fputs(pStr, outFileDesc);   // write name
     fputc('\n', outFileDesc);   // add newline
 }
+
+// trimStr - Trims beginning and end of a string.
+//           Creates a working copy of string, trims that,
+//           and copies the trimmed string back to original.
+//
+//           Because a trimmed string will always be the same
+//           or fewer characters than the original, the only
+//           side effect of this function is the modification of
+//           the original string in place.
+//
+// Parameter:
+//   pString - pointer of string to be trimmed/modified.
+// Returns:
+//   The length of the string after trimming.
 
 int trimStr(char* pStr){
     size_t first, last, lenIn, lenOut;

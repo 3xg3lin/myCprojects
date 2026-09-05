@@ -65,8 +65,8 @@ int main(int argc, char* argv[]){
     while (getName(inputFile, nameBuffer)) {
         AddName(&nameList, nameBuffer);
     }
-    PrintNames(outputFile, nameList);
-    DeleteNames(nameList);
+    PrintNames(outputFile, &nameList);
+    DeleteNames(&nameList);
 
     fprintf(stderr, "Closing files.\n");
     fclose(inputFile);

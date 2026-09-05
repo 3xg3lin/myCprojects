@@ -54,3 +54,12 @@ void PrintNames(FILE *outputDesc, NameList *pNames){
         curr = curr->pNext;
     }
 }
+
+void DeleteNames(NameList *pNames){
+    while (pNames->pFirstNode != NULL) {
+        ListNode* temp = pNames->pFirstNode;
+        pNames->pFirstNode = pNames->pFirstNode->pNext;
+        free(temp->pData);
+        free(temp);
+    }
+}

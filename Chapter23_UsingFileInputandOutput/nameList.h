@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <type_traits>
 
 
 typedef char ListData ;

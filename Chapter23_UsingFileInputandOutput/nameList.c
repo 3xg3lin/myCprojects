@@ -63,3 +63,12 @@ void DeleteNames(NameList *pNames){
         free(temp);
     }
 }
+
+bool IsEmpty(NameList *pNames){
+    return pNames->nodeCount == 0;
+}
+
+void OutOfStorage(void){
+    fprintf(stderr, "### FATAL RUNTIME ERROR ### No Memory Available");
+    exit(EXIT_FAILURE);
+}

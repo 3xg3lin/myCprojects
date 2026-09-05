@@ -45,3 +45,12 @@ void AddName(NameList *pNames, char *pNameToAdd){
     }
     prev->pNext = pNewName;
 }
+
+void PrintNames(FILE *outputDesc, NameList *pNames){
+    ListNode* curr = pNames->pFirstNode;
+    while (curr != NULL) {
+        fputs(curr->pData, outputDesc);
+        fputc('\n', outputDesc);
+        curr = curr->pNext;
+    }
+}

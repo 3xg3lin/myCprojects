@@ -16,3 +16,32 @@ ListNode* CreateListNode(char* pNameToAdd){
     strcpy(pNewNode->pData, pNameToAdd);
     return pNewNode;
 }
+
+void AddName(NameList *pNames, char *pNameToAdd){
+    ListNode* pNewName = CreateListNode(pNameToAdd);
+    if (IsEmpty(pNames)) {
+        pNames->pFirstNode = pNewName;
+        (pNames->nodeCount)++;
+        return;
+    }
+    (pNames->nodeCount)++;
+    ListNode* curr;
+    ListNode* prev;
+    curr = prev = pNames->pFirstNode;
+    while (curr) {
+        if (strcmp(pNewName->pData, curr->pData) < 0) {
+            if (curr == pNames->pFirstNode) {
+                pNames->pFirstNode = pNewName;
+                pNewName->pNext = curr;
+            }
+            else {
+                prev->pNext = pNewName;
+                pNewName->pNext = curr;
+            }
+            return;
+        }
+        prev = curr;
+        curr = prev->pNext;
+    }
+    prev->pNext = pNewName;
+}
